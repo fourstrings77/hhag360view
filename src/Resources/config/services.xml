@@ -8,5 +8,8 @@
         <service id="Hhag\ThreesixtyViewer\DAL\Media\Aggregate\ThreesixtyDataDefinition">
             <tag name="shopware.entity.definition" entity="hhag_media_threesixty_data"/>
         </service>
+        <service id="Hhag\ThreesixtyViewer\DAL\Extension\MediaExtension">
+            <tag name="shopware.entity.extension"/>
+        </service>
     </services>
 </container>
