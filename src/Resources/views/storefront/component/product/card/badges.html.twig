@@ -1,0 +1,14 @@
+{% sw_extends "@Storefront/storefront/component/product/card/badges.html.twig" %}
+
+{% block component_product_badges_new %}
+    {{ parent }}
+
+    <div class="threesixtyView">
+        <span class="badge bg-success badge-new">
+            {% sw_icon '360-icon' style {
+                'pack': '360',
+                'namespace': 'HhagThreesixtyViewer'
+            }%}
+            {# { "hhag.listing.360badge"|trans|sw_sanitize } #}</span>
+    </div>
+{% endblock %}
