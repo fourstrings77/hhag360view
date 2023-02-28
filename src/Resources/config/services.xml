@@ -6,7 +6,7 @@
 
     <services>
         <service id="Hhag\ThreesixtyViewer\DAL\Media\Aggregate\ThreesixtyDataDefinition">
-            <tag name="shopware.entity.extension" entity="hhag_media_threesixty_data"/>
+            <tag name="shopware.entity.definition" entity="hhag_media_threesixty_data"/>
         </service>
     </services>
 </container>

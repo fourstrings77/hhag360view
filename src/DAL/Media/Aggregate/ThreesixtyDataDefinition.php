@@ -23,6 +23,11 @@ class ThreesixtyDataDefinition extends EntityDefinition
     {
         return self::ENTITY_NAME;
     }
+    public function getCollectionClass(): string
+    {
+        return ThreesixtyDataCollection::class;
+    }
+
 
     protected function defineFields(): FieldCollection
     {
