@@ -10,5 +10,10 @@
             <label>Show Badge in Listing</label>
             <label lang="de-DE">Zeige Badge in der Produktübersicht</label>
         </input-field>
+        <input-field type="bool">
+            <name>showTextInBadge</name>
+            <label>Show Snippet in Badge</label>
+            <label lang="de-DE">Zeige Text innherhalb des Badges</label>
+        </input-field>
     </card>
 </config>
