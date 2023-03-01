@@ -1,0 +1,17 @@
+{% sw_extends "@Storefront/storefront/component/product/card/badges.html.twig" %}
+
+{% block component_product_badges_new %}
+    {{ parent }}
+    {% if config('HhagThreesixtyViewer.config.showBadgeInListing') %}
+    <div class="threesixtyView">
+        <span class="badge bg-success badge-new">
+            {% sw_icon '360-icon' style {
+                'pack': '360',
+                'namespace': 'HhagThreesixtyViewer'
+            }%}
+            {% if config('HhagThreesixtyViewer.config.showTextInBadge') %}
+                {{ "hhag.listing.360badge"|trans|sw_sanitize }}</span>
+            {% endif %}
+    </div>
+    {% endif %}
+{% endblock %}

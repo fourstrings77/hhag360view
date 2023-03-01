@@ -1,0 +1,65 @@
+{% sw_extends '@Storefront/storefront/page/product-detail/index.html.twig' %}
+
+{% block page_product_detail %}
+    {{ parent() }}
+
+    {% set viewerOptions = {
+            test: "test"
+    } %}
+
+    {% set images = [] %}
+    {% for i in 1..36 %}
+        {% set images = images|merge([asset('bundles/hhagthreesixtyviewer/demo/x/img'~ "%02d"|format(i) ~'.jpg', 'asset')])  %}
+    {% endfor %}
+
+    {% set viewerOptions = {
+        test: "test",
+        images
+    } %}
+    <div class="modal fade" id="threeSixty-viewer-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-threesixty-viewer-plugin="true" data-threesixty-viewer-plugin-options="{{ viewerOptions|json_encode }}">
+        <div class="modal-dialog" role="document" style="display: table">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">{{ "hhag.details.modalTitle"|trans }}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="jsv-holder" class="text-center">
+                        <img id="jsv-image" alt="example" src="{{ viewerOptions.images.0 }}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block page_product_detail_media %}
+    <div class="col-lg-7 product-detail-media">
+        <button name="test" class="btn btn-outline-info">
+            {% sw_icon '360-icon' style {
+                pack: '360',
+                namespace: 'HhagThreesixtyViewer'
+            } %}
+            360°</button>
+        {% if page.product.media %}
+            {% sw_include '@Storefront/storefront/element/cms-element-image-gallery.html.twig' with {
+                'mediaItems': mediaItems,
+                'zoom': true,
+                'zoomModal': true,
+                'displayMode': 'contain',
+                'gutter': 5,
+                'minHeight': '430px',
+                'navigationArrows': 'inside',
+                'navigationDots': 'inside',
+                'galleryPosition': 'left',
+                'isProduct': true,
+                'fallbackImageTitle': page.product.translated.name,
+                'startIndexThumbnails': 1,
+                'startIndexSlider': 1,
+                'keepAspectRatioOnZoom': false
+            } %}
+        {% endif %}
+    </div>
+{% endblock %}

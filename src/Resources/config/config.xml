@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/System/SystemConfig/Schema/config.xsd">
+
+    <card>
+        <title>360° Viewer Configuration</title>
+        <title lang="de-DE">360° Viewer Einstellungen</title>
+        <input-field type="bool">
+            <name>showBadgeInListing</name>
+            <label>Show Badge in Listing</label>
+            <label lang="de-DE">Zeige Badge in der Produktübersicht</label>
+        </input-field>
+        <input-field type="bool">
+            <name>showTextInBadge</name>
+            <label>Show Snippet in Badge</label>
+            <label lang="de-DE">Zeige Text innherhalb des Badges</label>
+        </input-field>
+    </card>
+</config>
