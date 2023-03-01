@@ -6,8 +6,18 @@
     {% set viewerOptions = {
             test: "test"
     } %}
+
+    {% set images = [] %}
+    {% for i in 1..36 %}
+        {% set images = images|merge([asset('bundles/hhagthreesixtyviewer/demo/x/img'~ "%02d"|format(i) ~'.jpg', 'asset')])  %}
+    {% endfor %}
+
+    {% set viewerOptions = {
+        test: "test",
+        images
+    } %}
     <div class="modal fade" id="threeSixty-viewer-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-threesixty-viewer-plugin="true" data-threesixty-viewer-plugin-options="{{ viewerOptions|json_encode }}">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog" role="document" style="display: table">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">{{ "hhag.details.modalTitle"|trans }}</h5>
@@ -17,7 +27,7 @@
                 </div>
                 <div class="modal-body">
                     <div id="jsv-holder" class="text-center">
-                        <img id="jsv-image" alt="example" src="https://360-javascriptviewer.com/images/ipod/ipod.jpg">
+                        <img id="jsv-image" alt="example" src="{{ viewerOptions.images.0 }}">
                     </div>
                 </div>
             </div>

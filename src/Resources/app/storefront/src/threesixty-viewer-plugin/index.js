@@ -2,57 +2,55 @@ import Plugin from 'src/plugin-system/plugin.class';
 import DomAccess from 'src/helper/dom-access.helper';
 import DeviceDetection from 'src/helper/device-detection.helper';
 import * as bootstrap from 'bootstrap';
-//import {JavascriptViewer} from "@3dweb/360javascriptviewer";
+import { JavascriptViewer } from "@threesixty/360javascriptviewer";
 
 
 export default class ThreesixtyViewerPlugin extends Plugin{
-
+    _viewer;
     static options = {
         modalSelector: '#threeSixty-viewer-modal',
-        btnSelector: '.product-detail-media button'
+        btnSelector: '.product-detail-media button',
+        viewerContainerSelector: 'jsv-holder',
+        viewerImageSelector: 'jsv-image',
+
     }
 
     init(){
-        const modal = DomAccess.querySelector(document, this.options.modalSelector);
-        this._registerEventListeners(modal);
-
-
-
+        this._registerEventListeners();
     }
 
-    _registerEventListeners(modal){
+    _registerEventListeners(){
 
         const btn =  DomAccess.querySelector(document, this.options.btnSelector);
         const event = (DeviceDetection.isTouchDevice()) ? 'touchstart' : 'click';
-        btn.addEventListener(event, this._openModal.bind(this, modal));
+        btn.addEventListener(event, this._openModal.bind(this));
 
-        const doc = document.documentElement;
-        console.log(doc)
-        doc.on('shown.bs.modal', this._onOpenModal.bind(this))
+        $(document).on('shown.bs.modal', this._onOpenModal.bind(this)); //warumauchimmer...
+        $(document).on('hidden.bs.modal', this._onHideModal.bind(this));
 
     }
     _openModal(){
-        const modalElement = this.el;
 
         const bsModal = new bootstrap.Modal(this.el, {
             keyboard: false
         });
 
-        /*const listener = () => {
-            this._onOpenModal();
-
-            this.$emitter.publish('modalShow', { modalElement });
-        };
-        bsModal._element.removeEventListener('shown.bs.modal', listener);
-        bsModal._element.addEventListener('shown.bs.modal', listener);*/
-
         bsModal.show();
-
-
     }
 
     _onOpenModal(){
-        console.log('opened')
+        this._viewer = new JavascriptViewer({
+            mainHolderId: this.options.viewerContainerSelector,
+            mainImageId: this.options.viewerImageSelector,
+            imageUrls: this.options.images,
+            speed: 70,
+            defaultPogressBar: true,
+        });
+        this._viewer.start();
+    }
+
+    _onHideModal(){
+        this._viewer.destroy();
     }
 }
 
