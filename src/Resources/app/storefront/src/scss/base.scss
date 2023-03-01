@@ -3,3 +3,13 @@
     color: #fff;
   }
 }
+
+.product-detail-media{
+  position: relative;
+  button{
+    position: absolute;
+    top: 10%;
+    left: 75%;
+    z-index: $zindex-sticky;
+  }
+}

@@ -6,23 +6,45 @@
     {% set viewerOptions = {
             test: "test"
     } %}
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="threeSixty-viewer-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-threesixty-viewer-plugin="true" data-threesixty-viewer-plugin-options="{{ viewerOptions|json_encode }}">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">{{ "hhag.details.modalTitle"|trans }}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div data-three-sixty-viewer-plugin="true" data-three-sixty-viewer-plugin-options="{{ viewerOptions|json_encode }}"></div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <div id="jsv-holder" class="text-center">
+                        <img id="jsv-image" alt="example" src="https://360-javascriptviewer.com/images/ipod/ipod.jpg">
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
+{% endblock %}
+
+{% block page_product_detail_media %}
+    <div class="col-lg-7 product-detail-media">
+        <button name="test">360°</button>
+        {% if page.product.media %}
+            {% sw_include '@Storefront/storefront/element/cms-element-image-gallery.html.twig' with {
+                'mediaItems': mediaItems,
+                'zoom': true,
+                'zoomModal': true,
+                'displayMode': 'contain',
+                'gutter': 5,
+                'minHeight': '430px',
+                'navigationArrows': 'inside',
+                'navigationDots': 'inside',
+                'galleryPosition': 'left',
+                'isProduct': true,
+                'fallbackImageTitle': page.product.translated.name,
+                'startIndexThumbnails': 1,
+                'startIndexSlider': 1,
+                'keepAspectRatioOnZoom': false
+            } %}
+        {% endif %}
     </div>
 {% endblock %}

@@ -1,7 +1,11 @@
 {
   "hhag": {
     "listing": {
-      "360badge": "360° View"
+      "360badge": "360° Ansicht"
+    },
+    "details": {
+      "btnLabel": "360° Ansicht",
+      "modalTitle": "360° Ansicht"
     }
   }
 }
