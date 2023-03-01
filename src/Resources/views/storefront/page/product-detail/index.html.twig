@@ -37,7 +37,12 @@
 
 {% block page_product_detail_media %}
     <div class="col-lg-7 product-detail-media">
-        <button name="test">360°</button>
+        <button name="test" class="btn btn-outline-info">
+            {% sw_icon '360-icon' style {
+                pack: '360',
+                namespace: 'HhagThreesixtyViewer'
+            } %}
+            360°</button>
         {% if page.product.media %}
             {% sw_include '@Storefront/storefront/element/cms-element-image-gallery.html.twig' with {
                 'mediaItems': mediaItems,
