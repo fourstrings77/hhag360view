@@ -3,4 +3,12 @@
       :key="isLoading"
       v-model="importedFile"
    ></sw-file-input>
+   <sw-button
+           :disabled="disableStartButton"
+      @click="onStartUpload"
+      size="small"
+      variant="primary"
+   >
+      Import
+   </sw-button>
 </sw-card>

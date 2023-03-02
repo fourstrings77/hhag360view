@@ -10,7 +10,7 @@ export default class ZipImportService extends ApiService{
         this.httpClient = httpClient;
     }
 
-    async import(file){
+    async zipImport(file){
         const formData = new FormData();
 
         if(file){

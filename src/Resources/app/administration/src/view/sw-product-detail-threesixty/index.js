@@ -5,7 +5,8 @@ const { Criteria } = Shopware.Data;
 
 Shopware.Component.register('sw-product-detail-threesixty', {
     template,
-    inject: ['repositoryFactory'],
+    inject: ['repositoryFactory', 'zipImportService'],
+
     mixins:[
         Mixin.getByName('notification')
     ],
@@ -19,12 +20,20 @@ Shopware.Component.register('sw-product-detail-threesixty', {
         return {
             importedFile: null,
             isLoading: true,
+            disableStartButton: false
         }
     },
     computed:{
 
     },
     methods:{
+        async onStartUpload(){
+            this.isLoading = true;
+            this.disableStartButton = true;
 
+            console.log('upload start...')
+
+            await this.zipImportService.zipImport(importedFile);
+        }
     }
 })
