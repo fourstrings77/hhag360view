@@ -1,6 +1,13 @@
 import './page/sw-product-detail';
 import './view/sw-product-detail-threesixty';
+import ZipImportService from "./service/zipImport.service";
 
+Shopware.Service().register('zipImportService', () => {
+    new ZipImportService(
+        Shopware.Application.getContainer('init').httpClient,
+        Shopware.Service('loginService')
+    )
+})
 
 Shopware.Module.register('sw-new-tab-threesixty', {
     routeMiddleware(next, current){

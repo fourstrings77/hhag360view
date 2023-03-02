@@ -17,7 +17,7 @@ export default class ZipImportService extends ApiService{
             formData.append('file', file)
         }
 
-        await this.httpClient.post('URL', formData, {
+        await this.httpClient.post('/_action/zip-import/upload', formData, {
             headers: this.getBasicHeaders(),
         })
     }
