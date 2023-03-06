@@ -33,7 +33,15 @@ Shopware.Component.register('sw-product-detail-threesixty', {
 
             console.log('upload start...')
 
-            await this.zipImportService.zipImport(importedFile);
+            await this.zipImportService.zipImport(this.importedFile)
+                .catch((exception) => {
+                    this.createNotificationError({
+                        message: exception,
+                        autoClose: false,
+                    });
+                });
+
+            this.isLoading = false;
         }
     }
 })

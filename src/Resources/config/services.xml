@@ -11,5 +11,13 @@
         <service id="Hhag\ThreesixtyViewer\DAL\Extension\MediaExtension">
             <tag name="shopware.entity.extension"/>
         </service>
+
+        <service id="Hhag\ThreesixtyViewer\Content\ZipImport\Controller\ZipImportController" public="true">
+            <argument type="service" id="Shopware\Core\Content\Media\MediaService"/>
+            <argument type="service" id="Shopware\Core\Content\Media\File\FileSaver"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
     </services>
 </container>

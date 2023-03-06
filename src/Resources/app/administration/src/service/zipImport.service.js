@@ -14,11 +14,14 @@ export default class ZipImportService extends ApiService{
         const formData = new FormData();
 
         if(file){
+            console.log('append: '+file)
             formData.append('file', file)
         }
 
         await this.httpClient.post('/_action/zip-import/upload', formData, {
             headers: this.getBasicHeaders(),
+        }).then((response) => {
+            return ApiService.handleResponse(response)
         })
     }
 }
