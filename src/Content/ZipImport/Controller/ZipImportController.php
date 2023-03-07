@@ -96,12 +96,21 @@ class ZipImportController extends AbstractController
             $uploadedFileRaw = imagecreatefromstring($mediaEntry['stream']);
 
             if($uploadedFileRaw){
-                imagejpeg($uploadedFileRaw, sys_get_temp_dir().'/image.jpeg', 100);
+                imagejpeg($uploadedFileRaw, sys_get_temp_dir().'/'.basename($mediaEntry['meta']['name']), 100);
                 imagedestroy($uploadedFileRaw);
             }
-             $uploadedFile = new UploadedFile(sys_get_temp_dir().'/image.jpeg', 'image.jpeg', 'image/jpeg', null, true);
+             $uploadedFile = new UploadedFile(
+                 sys_get_temp_dir().'/'.basename($mediaEntry['meta']['name']),
+                 basename($mediaEntry['meta']['name']),
+                 'image/jpeg',
+                 null,
+                 true);
 
-            $mediaFile = new MediaFile($uploadedFile->getPathname(), $uploadedFile->getMimeType(), $uploadedFile->getClientOriginalExtension(), $uploadedFile->getSize());
+            $mediaFile = new MediaFile(
+                $uploadedFile->getPathname(),
+                $uploadedFile->getMimeType(),
+                $uploadedFile->getClientOriginalExtension(),
+                $uploadedFile->getSize());
 
             $mediaId = $this->mediaService->createMediaInFolder("", $context, false);
 
